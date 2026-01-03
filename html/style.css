@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background: transparent;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding-top: 5vh;
+    padding-right: 2vh;
+}
+
+#notifications-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 350px;
+    max-height: 80vh;
+    overflow: hidden;
+}
+
+.notification {
+    background: rgba(18, 18, 24, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: #fff;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    transform: translateX(120%);
+    animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    position: relative;
+    overflow: hidden;
+}
+
+.notification.slide-out {
+    animation: slideOut 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideIn {
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOut {
+    to {
+        transform: translateX(120%);
+        opacity: 0;
+    }
+}
+
+.notification-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.notification-content {
+    flex: 1;
+}
+
+.notification-title {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 4px;
+    color: #f1f1f1;
+}
+
+.notification-message {
+    font-size: 13px;
+    color: #a1a1aa;
+    line-height: 1.4;
+}
+
+/* Types */
+.type-success .notification-icon svg { fill: #4ade80; }
+.type-success { border-left: 3px solid #4ade80; }
+
+.type-error .notification-icon svg { fill: #f87171; }
+.type-error { border-left: 3px solid #f87171; }
+
+.type-info .notification-icon svg { fill: #60a5fa; }
+.type-info { border-left: 3px solid #60a5fa; }
+
+.type-warning .notification-icon svg { fill: #fbbf24; }
+.type-warning { border-left: 3px solid #fbbf24; }
+
+/* Progress Bar */
+.progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.2);
+    width: 100%;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 100%;
+    background: currentColor;
+    /* transition handled in JS or keyframe? JS is smoother for variable duration */
+    transform-origin: left;
+}
